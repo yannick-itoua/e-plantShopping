@@ -1,16 +1,17 @@
-import React, { useState,useEffect } from 'react';
-import './ProductList.css'
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'; // Correctly import useSelector
+import './ProductList.css';
 import CartItem from './CartItem';
-import { useDispatch } from 'react-redux';
 import { addItem } from './CartSlice';
+
 
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
-    //const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    //const [addedToCart, setAddedToCart] = useState({}); // State to track products added to cart
+    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const [addedToCart, setAddedToCart] = useState({}); // State to track products added to cart
     const dispatch = useDispatch(); // Hook to dispatch actions
      const cartItems = useSelector((state) => state.cart.items); // Adjust based on your Redux structure
-    const cartQuantities = useSelector((state) => state.cart.quantities); // Assuming quantities are stored like this
+    const cartQuantities = useSelector((state) => state.cart.quantities || {}); // Default to empty object if undefined
 
 
     const plantsArray = [
